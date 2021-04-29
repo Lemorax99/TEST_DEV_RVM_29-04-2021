@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Persona Fisica";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<h2>Agregar persona fisica</h2>
+<div>
+    <label for="nombre">Nombre : </label>
+    <input type="text" id="Nombre" name="nombre" placeholder="Digita nombre"/>
+</div>
+<div>
+    <label for="ApPaterno">Apellido paterno : </label>
+    <input type="text" id="ApellidoPaterno" name="ApPaterno" placeholder="Digita apellido paterno" />
+</div>
+<div>
+    <label for="ApMaterno">Apellido materno : </label>
+    <input type="text" id="ApellidoMaterno" name="ApMaterno" placeholder="Digita apellido materno" />
+</div>
+<div>
+    <label for="RFC">RFC : </label>
+    <input type="text" id="Rfc" name="RFC" placeholder="Digita RFC" />
+</div>
+<div>
+    <label for="fechaNacimiento">Fecha de nacimiento : </label>
+    <input type="date" id="FechaNacimiento" name="fechaNacimiento"/>
+</div>
+<div>
+    <label for="usuarioAgrega">Usuario que agrega : </label>
+    <input type="text" id="UsuarioAgrega" name="usuarioAgrega" placeholder="Digita usuario que agrega" />
+</div>
+<button id="boton_guardar">Guardar</button>
+
+<script>
+    $("#boton_guardar").click(function () {
+        var Persona = {
+            Nombre: $("#Nombre").val(),
+            ApellidoPaterno: $("#ApellidoPaterno").val(),
+            ApellidoMaterno: $("#ApellidoMaterno").val(),
+            RFC: $("#Rfc").val(),
+            FechaNacimiento: $("#FechaNacimiento").val(),
+            UsuarioAgrega:$("#UsuarioAgrega").val()
+        };
+        $.post("/PersonaFisica/AddUpdatePersonaFisica", Persona)
+            .done(function (data) {
+            });
+    });
+</script>
