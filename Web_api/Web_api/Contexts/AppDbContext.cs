@@ -17,11 +17,11 @@ namespace Web_api.Contexts
 
         public async Task Procedure_Put(object[] parametros)
         {
-            await Database.ExecuteSqlCommandAsync(@"exec [sp_ActualizarPersonaFisica] @IdPersonaFisica,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@RFC,@FechaNacimiento,@UsuarioAgrega", parametros);
+            await Database.ExecuteSqlCommandAsync(@"exec sp_ActualizarPersonaFisica @IdPersonaFisica,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@RFC,@FechaNacimiento,@UsuarioAgrega", parametros);
         }
         public async Task Procedure_Post(object[] parametros)
         {
-            await Database.ExecuteSqlCommandAsync(@"exec [sp_AgregarPersonaFisica]@Nombre,@ApellidoPaterno,@ApellidoMaterno,@RFC,@FechaNacimiento,@UsuarioAgrega", parametros);
+            await Database.ExecuteSqlCommandAsync(@"exec [sp_AgregarPersonaFisica]@IdPersonaFisica,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@RFC,@FechaNacimiento,@UsuarioAgrega", parametros);
         }
         public async Task Procedure_Del(object[] parametros)
         {

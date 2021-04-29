@@ -38,3 +38,4 @@ C:\Users\Lemorax99\Desktop\Prueba de desarrollo\Front_web\Front_web\obj\Debug\ne
 C:\Users\Lemorax99\Desktop\Prueba de desarrollo\Front_web\Front_web\obj\Debug\netcoreapp3.1\Front_web.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lemorax99\Desktop\Prueba de desarrollo\Front_web\Front_web\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Lemorax99\Desktop\Prueba de desarrollo\Front_web\Front_web\obj\Debug\netcoreapp3.1\Razor\Views\PersonaFisica\Lista.cshtml.g.cs
+C:\Users\Lemorax99\Desktop\Prueba de desarrollo\Front_web\Front_web\obj\Debug\netcoreapp3.1\Razor\Views\Datos\Index.cshtml.g.cs

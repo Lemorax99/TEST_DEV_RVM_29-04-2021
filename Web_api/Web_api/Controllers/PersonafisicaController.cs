@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Web_api.Contexts;
 using Web_api.Models;
 
@@ -32,7 +33,7 @@ namespace Web_api.Controllers
         [HttpGet("{id}")]
         public Persona_fisica Get(int id)
         {
-            var persona = context.Tb_PersonasFisicas.FirstOrDefault(p => p.IdPersonaFisica==id);
+            var persona = context.Tb_PersonasFisicas.FirstOrDefault(p => p.IdPersonaFisica == id);
             return persona;
         }
 
@@ -54,35 +55,28 @@ namespace Web_api.Controllers
 
         // PUT api/<PersonafisicaController>/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] Persona_fisica persona_fisica)
+        public ActionResult Put(int id, [FromBody] Persona_fisica persona_fisica)
         {
-            if (id == persona_fisica.IdPersonaFisica)
-            {
-                Console.WriteLine(persona_fisica);
-                var parametros = new List<object>
-                { 
-                    new SqlParameter("@IdPersonaFisica",persona_fisica.IdPersonaFisica),
-                    new SqlParameter("@Nombre",persona_fisica.Nombre),
-                    new SqlParameter("@ApellidoPaterno",persona_fisica.ApellidoPaterno),
-                    new SqlParameter("@ApellidoMaterno",persona_fisica.ApellidoMaterno),
-                    new SqlParameter("@RFC",persona_fisica.RFC),
-                    new SqlParameter("@FechaNacimiento",persona_fisica.FechaNacimiento),
-                    new SqlParameter("@UsuarioAgrega",persona_fisica.UsuarioAgrega)
-                };
-                await context.Procedure_Put(parametros.ToArray());
-            }
-            
+            context.Entry(persona_fisica).State =EntityState.Modified;
+            context.SaveChanges();
+            return Ok();
         }
 
         // DELETE api/<PersonafisicaController>/5
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public ActionResult Delete(int id)
         {
-            var parametros = new List<object>
+            var persona_fisica = context.Tb_PersonasFisicas.FirstOrDefault(p => p.IdPersonaFisica == id);
+            if (persona_fisica != null)
             {
-                new SqlParameter("@IdPersonaFisica",id)
-            };
-            await context.Procedure_Del(parametros.ToArray());
+                context.Tb_PersonasFisicas.Remove(persona_fisica);
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
