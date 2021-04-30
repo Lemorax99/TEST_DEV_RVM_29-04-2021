@@ -16,8 +16,8 @@ namespace Web_api.Controllers
     [ApiController]
     public class PersonafisicaController : ControllerBase
     {
+        
         public AppDbContext context { get; }
-
         public PersonafisicaController(AppDbContext context)
         {
             this.context = context;
